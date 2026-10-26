@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-width=1.0">
+    <title>Explorador de Rick and Morty</title>
+    <!-- Enlace a la hoja de estilos -->
+    <link rel="stylesheet" href="style.css">
+    <!-- El atributo defer asegura que el script se ejecute después de cargar el HTML -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Encabezado principal con título y barra de búsqueda -->
+    <header class="app-header">
+        <h1>Rick and Morty Explorer</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Buscar personaje por nombre...">
+        </div>
+    </header>
+
+    <!-- Barra de filtros interactivos -->
+    <nav class="filters-bar">
+        <select id="statusFilter" aria-label="Filtrar por estado">
+            <option value="">Cualquier estado</option>
+            <option value="alive">Alive</option>
+            <option value="dead">Dead</option>
+            <option value="unknown">Unknown</option>
+        </select>
+
+        <select id="speciesFilter" aria-label="Filtrar por especie">
+            <option value="">Cualquier especie</option>
+            <option value="human">Human</option>
+            <option value="alien">Alien</option>
+            <!-- Puedes inyectar más especies dinámicamente con JS -->
+        </select>
+
+        <select id="genderFilter" aria-label="Filtrar por género">
+            <option value="">Cualquier género</option>
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+            <option value="genderless">Genderless</option>
+            <option value="unknown">Unknown</option>
+        </select>
+    </nav>
+
+    <!-- Contenedor para mensajes de estado (Cargando, Error, Sin resultados) -->
+    <div id="messages" class="message-container">
+        <!-- JS inyectará texto aquí, ej: "Cargando personajes..." -->
+    </div>
+
+    <!-- Sección de Favoritos (Separada del flujo principal) -->
+    <section id="favoritesSection" class="favorites-section">
+        <h2>Mis Personajes Favoritos</h2>
+        <!-- Grid para los favoritos -->
+        <div id="favoritesContainer" class="grid-container"></div>
+    </section>
+
+    <!-- Sección Principal donde irán todas las tarjetas -->
+    <main class="main-content">
+        <h2>Todos los Personajes</h2>
+        <!-- Grid principal de personajes -->
+        <div id="charactersContainer" class="grid-container"></div>
+    </main>
+</body>
+</html>
