@@ -234,7 +234,7 @@ themeToggleBtn.addEventListener('click', () => {
 });
 
 // IMPORTANTE: Agrega la llamada a cargarTema() justo donde llamas a cargarFavoritos()
-// cargarTema();
+ cargarTema();
 
 
 // Arrancamos la aplicación
