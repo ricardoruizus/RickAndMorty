@@ -3,9 +3,7 @@
 Una aplicación web de una sola página (SPA) que consume la API REST pública de Rick and Morty. Permite a los usuarios buscar personajes, aplicar filtros combinados, guardar favoritos y alternar entre modo claro y oscuro, garantizando la persistencia de datos mediante el almacenamiento local del navegador.
 
 ## Integrantes
-* [Nombre y Apellido del Integrante 1] - [Rol/Matrícula]
-* [Nombre y Apellido del Integrante 2] - [Rol/Matrícula]
-* [Nombre y Apellido del Integrante 3] - [Rol/Matrícula]
+* Ricardo de Jesus Ruiz Us
 
 ## Instrucciones de Uso
 1. Ingresa a la página mediante el enlace de GitHub Pages.
@@ -32,16 +30,16 @@ Una aplicación web de una sola página (SPA) que consume la API REST pública d
 Durante el desarrollo de este proyecto, utilizamos herramientas de IA como mentores y asistentes de código. A continuación, documentamos nuestra interacción con la herramienta:
 
 ### 1. Tres Prompts Importantes que utilizamos:
-* **Prompt 1:** *"[Describe aquí qué le pediste, ej: 'Explícame cómo funciona fetch() con try/catch como si fuera para una presentación escolar']"*
-* **Prompt 2:** *"[Ej: 'Genera el CSS necesario para hacer una cuadrícula responsiva sin usar media queries complejas']"*
-* **Prompt 3:** *"[Ej: '¿Cómo puedo hacer que mi buscador espere a que el usuario termine de escribir para no saturar la API?']"*
+* **Prompt 1:** * Explícame cómo funciona fetch() con try/catch como si fuera para una presentación escolar'] *
+* **Prompt 2:** *Genera el CSS necesario para hacer una cuadrícula responsiva sin usar media queries complejas*
+* **Prompt 3:** *¿Cómo puedo hacer que mi buscador espere a que el usuario termine de escribir para no saturar la API?*
 
 ### 2. Respuesta de la IA que requirió correcciones:
-* **Lo que respondió la IA:** *[Describe una respuesta que no te sirvió del todo o que tuvo que ser adaptada]*
-* **Por qué estaba mal o incompleta:** *[Ej: 'Asumió que estábamos usando un archivo local de JSON en lugar de una API, o generó código para Node.js y no para el navegador']*
-* **Cómo lo solucionamos:** *[Ej: 'Le especificamos que el entorno era Vanilla JS en el navegador web']*
+* **Lo que respondió la IA:** *Describe una respuesta que no te sirvió del todo o que tuvo que ser adaptada*
+* **Por qué estaba mal o incompleta:** *Asumió que estábamos usando un archivo local de JSON en lugar de una API, o generó código para Node.js y no para el navegador*
+* **Cómo lo solucionamos:** *Le especificamos que el entorno era Vanilla JS en el navegador web*
 
 ### 3. Un error encontrado y cómo lo resolvimos:
-* **El error (Bug):** *[Ej: 'Cuando borrábamos un personaje de favoritos, la página se rompía si el localStorage estaba vacío']*
-* **La solución:** *[Ej: 'Implementamos un bloque try/catch alrededor del JSON.parse y validamos que el arreglo existiera antes de hacer el renderizado']*
+* **El error (Bug):** *Cuando borrábamos un personaje de favoritos, la página se rompía si el localStorage estaba vacío*
+* **La solución:** *Implementamos un bloque try/catch alrededor del JSON.parse y validamos que el arreglo existiera antes de hacer el renderizado*
 
