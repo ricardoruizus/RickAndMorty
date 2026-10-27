@@ -1,14 +1,25 @@
-// Referencias a los elementos del DOM
+// =========================================
+// 1. REFERENCIAS AL DOM
+// =========================================
 const charactersContainer = document.getElementById('charactersContainer');
 const messagesContainer = document.getElementById('messages');
+const searchInput = document.getElementById('searchInput');
+const statusFilter = document.getElementById('statusFilter');
+const speciesFilter = document.getElementById('speciesFilter');
+const genderFilter = document.getElementById('genderFilter');
+const clearFiltersBtn = document.getElementById('clearFiltersBtn'); // Recuerda agregar este botón en tu HTML
+
 const API_URL = 'https://rickandmortyapi.com/api/character';
+
+// =========================================
+// 2. FUNCIONES DE INTERFAZ
+// =========================================
 
 /**
  * Muestra un mensaje en la interfaz (ej. Cargando, Errores)
  */
 function mostrarMensaje(mensaje, esError = false) {
     messagesContainer.textContent = mensaje;
-    // Si es un error, cambiamos el color a rojo; si no, usa el color por defecto
     messagesContainer.style.color = esError ? '#d32f2f' : 'var(--message-color)';
 }
 
@@ -16,15 +27,12 @@ function mostrarMensaje(mensaje, esError = false) {
  * Recibe un arreglo de personajes y crea las tarjetas en el DOM
  */
 function mostrarPersonajes(personajes) {
-    // Limpiamos el contenedor antes de agregar nuevos elementos
     charactersContainer.innerHTML = '';
 
-    // Iteramos sobre los personajes recibidos (la API devuelve 20 por página)
     personajes.forEach(personaje => {
         const card = document.createElement('div');
         card.className = 'card';
         
-        // Construimos el contenido de la tarjeta
         card.innerHTML = `
             <img src="${personaje.image}" alt="Imagen de ${personaje.name}" style="width: 100%; border-radius: var(--border-radius); margin-bottom: 10px;">
             <h3>${personaje.name}</h3>
@@ -38,35 +46,68 @@ function mostrarPersonajes(personajes) {
     });
 }
 
+// =========================================
+// 3. LÓGICA DE API Y BÚSQUEDA
+// =========================================
+
 /**
- * Consulta la API y maneja la respuesta
+ * Consulta la API dinámicamente según los filtros aplicados
  */
 async function obtenerPersonajes() {
-    // 1. Mostramos el estado de carga inicial
     mostrarMensaje('Cargando personajes...');
+    charactersContainer.innerHTML = ''; // Limpiamos las tarjetas previas
+
+    // Construimos la URL con los parámetros de búsqueda
+    const url = new URL(API_URL);
+    if (searchInput.value) url.searchParams.append('name', searchInput.value);
+    if (statusFilter.value) url.searchParams.append('status', statusFilter.value);
+    if (speciesFilter.value) url.searchParams.append('species', speciesFilter.value);
+    if (genderFilter.value) url.searchParams.append('gender', genderFilter.value);
 
     try {
-        // 2. Realizamos la petición a la API
-        const respuesta = await fetch(API_URL);
+        const respuesta = await fetch(url);
 
-        // 3. Verificamos si la respuesta HTTP fue exitosa
         if (!respuesta.ok) {
+            if (respuesta.status === 404) {
+                mostrarMensaje('No se encontraron personajes.', false);
+                return; 
+            }
             throw new Error(`Error HTTP: ${respuesta.status}`);
         }
 
-        // 4. Convertimos la respuesta a formato JSON
         const data = await respuesta.json();
-
-        // 5. Limpiamos el mensaje de carga y mostramos los datos
         mostrarMensaje(''); 
         mostrarPersonajes(data.results);
 
     } catch (error) {
-        // 6. Capturamos cualquier error (de red o lanzado manualmente)
         console.error('Detalle del error:', error);
-        mostrarMensaje('No se pudieron cargar los personajes. Revisa tu conexión a internet o intenta más tarde.', true);
+        mostrarMensaje('No se pudieron cargar los personajes. Revisa tu conexión a internet.', true);
     }
 }
 
-// Iniciar la aplicación llamando a la función principal
+// =========================================
+// 4. EVENT LISTENERS (Filtros y Debounce)
+// =========================================
+
+statusFilter.addEventListener('change', obtenerPersonajes);
+speciesFilter.addEventListener('change', obtenerPersonajes);
+genderFilter.addEventListener('change', obtenerPersonajes);
+
+clearFiltersBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    statusFilter.value = '';
+    speciesFilter.value = '';
+    genderFilter.value = '';
+    obtenerPersonajes(); 
+});
+
+let debounceTimer;
+searchInput.addEventListener('input', () => {
+    clearTimeout(debounceTimer); 
+    debounceTimer = setTimeout(() => {
+        obtenerPersonajes();
+    }, 400);
+});
+
+// Iniciar la aplicación por primera vez
 obtenerPersonajes();
