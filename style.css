@@ -154,3 +154,30 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* =========================================
+   MODO OSCURO (Atributo data-theme)
+   ========================================= */
+[data-theme="dark"] {
+    /* Sobrescribimos las variables de :root solo cuando <html> tiene este atributo */
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --border-color: #333333;
+    --message-color: #aaaaaa;
+    /* Mantenemos el --accent-color original porque el azul contrasta bien en negro */
+}
+
+/* Estilo para el botón de cambio de tema */
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.1);
+}
