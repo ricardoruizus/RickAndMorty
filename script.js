@@ -9,6 +9,8 @@ const statusFilter = document.getElementById('statusFilter');
 const speciesFilter = document.getElementById('speciesFilter');
 const genderFilter = document.getElementById('genderFilter');
 const clearFiltersBtn = document.getElementById('clearFiltersBtn');
+const themeToggleBtn = document.getElementById('themeToggleBtn');
+const htmlElement = document.documentElement;
 
 const API_URL = 'https://rickandmortyapi.com/api/character';
 
@@ -194,6 +196,46 @@ searchInput.addEventListener('input', () => {
         obtenerPersonajes();
     }, 400);
 });
+
+/**
+ * Carga el tema guardado en localStorage al abrir la página
+ */
+function cargarTema() {
+    const temaGuardado = localStorage.getItem('rick_morty_tema');
+    
+    // Si el usuario guardó el tema oscuro previamente
+    if (temaGuardado === 'dark') {
+        htmlElement.setAttribute('data-theme', 'dark');
+        themeToggleBtn.textContent = '☀️'; // Cambiamos el icono al sol
+    } else {
+        htmlElement.setAttribute('data-theme', 'light');
+        themeToggleBtn.textContent = '🌙'; // Icono de luna por defecto
+    }
+}
+
+/**
+ * Event Listener para el botón de cambiar tema
+ */
+themeToggleBtn.addEventListener('click', () => {
+    // Leemos el tema actual
+    const temaActual = htmlElement.getAttribute('data-theme');
+    
+    if (temaActual === 'dark') {
+        // Cambiar a claro
+        htmlElement.setAttribute('data-theme', 'light');
+        themeToggleBtn.textContent = '🌙';
+        localStorage.setItem('rick_morty_tema', 'light');
+    } else {
+        // Cambiar a oscuro
+        htmlElement.setAttribute('data-theme', 'dark');
+        themeToggleBtn.textContent = '☀️';
+        localStorage.setItem('rick_morty_tema', 'dark');
+    }
+});
+
+// IMPORTANTE: Agrega la llamada a cargarTema() justo donde llamas a cargarFavoritos()
+// cargarTema();
+
 
 // Arrancamos la aplicación
 cargarFavoritos(); // Primero cargamos los favoritos guardados
