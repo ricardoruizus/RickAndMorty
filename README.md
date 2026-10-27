@@ -16,7 +16,7 @@ Una aplicación web de una sola página (SPA) que consume la API REST pública d
 6. Si actualizas la página o cierras el navegador, tanto tu tema elegido como tus favoritos seguirán allí la próxima vez que entres.
 
 ## Enlace a GitHub Pages
-🔗 [Pega aquí la URL de tu sitio desplegado, ej: https://tu-usuario.github.io/tu-repo/]
+🔗 https://ricardoruizus.github.io/RickAndMorty/
 
 ## Tecnologías Usadas
 * **HTML5:** Estructura semántica de la aplicación.
@@ -45,7 +45,3 @@ Durante el desarrollo de este proyecto, utilizamos herramientas de IA como mento
 * **El error (Bug):** *[Ej: 'Cuando borrábamos un personaje de favoritos, la página se rompía si el localStorage estaba vacío']*
 * **La solución:** *[Ej: 'Implementamos un bloque try/catch alrededor del JSON.parse y validamos que el arreglo existiera antes de hacer el renderizado']*
 
-### 4. Modificación de código explicada:
-* **Código original (o de la IA):** 
-  ```javascript
-  // [Pega aquí un pedazo de código inicial]
